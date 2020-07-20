@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "GrpcDemo.GrpcApi": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:49002"
+    }
+  }
+}

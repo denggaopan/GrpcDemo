@@ -1,0 +1,20 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "GrpcDemo.Dtos";
+
+package health;
+
+service Healther{
+	rpc Check(HealthRequest) returns (HealthResult){}
+}
+
+message HealthRequest{
+	string id =1;
+}
+
+
+message HealthResult{
+	string result = 1;
+}
+
+
