@@ -6,9 +6,16 @@
 
   <ItemGroup>
     <PackageReference Include="Grpc.AspNetCore" Version="2.30.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.30.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.6" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GrpcDemo.Database\GrpcDemo.Database.csproj" />
     <ProjectReference Include="..\GrpcDemo.Dtos\GrpcDemo.Dtos.csproj" />
   </ItemGroup>
 

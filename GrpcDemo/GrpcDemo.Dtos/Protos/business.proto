@@ -1,0 +1,28 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "GrpcDemo.Dtos";
+
+package business;
+
+service Business{
+	rpc Add(BusinessCreationData) returns (BusinessCreationResult){}
+	rpc AddList(BusinessListCreationData) returns (BusinessCreationResult){}
+}
+
+message BusinessCreationData{
+	string name =1;
+	string address =2;
+	string tel = 3;
+	string email = 4;
+}
+
+message BusinessListCreationData {
+	repeated BusinessCreationData BusinessesCreationData = 1;
+}
+
+
+message BusinessCreationResult{
+	string message = 1;
+}
+
+

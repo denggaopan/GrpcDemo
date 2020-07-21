@@ -16,9 +16,10 @@ namespace GrpcDemo.GrpcApi
 
         public override Task<HealthResult> Check(HealthRequest request, ServerCallContext context)
         {
+            _logger.LogTrace("do check.");
             return Task.FromResult(new HealthResult
             {
-                Result = $"GrpcApi-{DateTime.Now}-{request.Id}"
+                Result = $"GrpcApi is healthful! -{DateTime.Now}-{request.Id}"
             });
         }
     }
