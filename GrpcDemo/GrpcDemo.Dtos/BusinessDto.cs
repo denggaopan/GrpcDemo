@@ -4,9 +4,9 @@ using System.Text;
 
 namespace GrpcDemo.Dtos
 {
-    public class BusinessCreationDto
+    public class BusinessDto
     {
-
+        public string Id { get; set; }
         public string Name { get; set; }
 
         public string Address { get; set; }

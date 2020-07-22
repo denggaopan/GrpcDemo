@@ -6,6 +6,8 @@ using GrpcDemo.Dtos;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
 using GrpcDemo.Database.Entities;
+using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace GrpcDemo.GrpcApi.Services
 {
@@ -17,6 +19,24 @@ namespace GrpcDemo.GrpcApi.Services
         {
             _logger = logger;
             _db = db;
+        }
+
+        public override Task<BusinessListResult> GetList(QueryData data, ServerCallContext context)
+        {
+            var page = data.Page;
+            var limit = data.Limit;
+            var q = _db.Businesses.OrderByDescending(a => a.CreatedTime).Skip((page - 1) * limit).Take(limit);
+            var list = q.Select(a => new BusinessItemResult()
+            {
+                Id = a.Id,
+                Name = a.Name,
+                Address = a.Address,
+                Tel = a.Tel,
+                Email = a.Email
+            });
+            var res = new BusinessListResult();
+            res.List.AddRange(list.ToList());
+            return Task.FromResult(res); 
         }
 
 

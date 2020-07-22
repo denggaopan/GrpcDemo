@@ -19,8 +19,24 @@ namespace GrpcDemo.RestApi.Controllers
             _db = db;
         }
 
+
+        [HttpGet("list")]
+        public IActionResult List(int page,int limit)
+        {
+            var q = _db.Businesses.OrderByDescending(a => a.CreatedTime).Skip((page - 1) * limit).Take(limit);
+            var list = q.Select(a=> new BusinessDto 
+            {
+                Id = a.Id,
+                Name = a.Name,
+                Address = a.Address,
+                Tel = a.Tel,
+                Email =a.Email
+            });
+            return Ok(list);
+        }
+
         [HttpPost("add")]
-        public IActionResult Add(BusinessCreationDto dto)
+        public IActionResult Add(BusinessDto dto)
         {
             var entity = new Database.Entities.Business()
             {
@@ -39,7 +55,7 @@ namespace GrpcDemo.RestApi.Controllers
         }
 
         [HttpPost("addlist")]
-        public IActionResult AddList(List<BusinessCreationDto> dto)
+        public IActionResult AddList(List<BusinessDto> dto)
         {
             var entities = new List<Database.Entities.Business>();
             foreach (var item in dto)

@@ -7,6 +7,7 @@ package business;
 service Business{
 	rpc Add(BusinessCreationData) returns (BusinessCreationResult){}
 	rpc AddList(BusinessListCreationData) returns (BusinessCreationResult){}
+	rpc GetList(QueryData) returns (BusinessListResult){}
 }
 
 message BusinessCreationData{
@@ -23,6 +24,23 @@ message BusinessListCreationData {
 
 message BusinessCreationResult{
 	string message = 1;
+}
+
+message QueryData{
+	int32 page = 1;
+	int32 limit = 2;
+}
+
+message BusinessItemResult{
+	string id = 1;
+	string name = 2;
+	string address = 3;
+	string tel = 4;
+	string email = 5;	
+}
+
+message BusinessListResult{
+	repeated BusinessItemResult list = 1;
 }
 
 
